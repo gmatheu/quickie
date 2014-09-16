@@ -2,6 +2,8 @@
 
 [![Clojars Project](http://clojars.org/gmatheu/quickie/latest-version.svg)](http://clojars.org/gmatheu/quickie)
 
+[![Build Status](https://travis-ci.org/gmatheu/quickie.svg?branch=master)](https://travis-ci.org/gmatheu/quickie)
+
 
 A Leiningen plugin that will magically re-run all your tests when a file changes.
 
