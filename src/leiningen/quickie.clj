@@ -19,7 +19,7 @@
   "Automatically run tests when clj files change"
   [project & args]
   (eval/eval-in-project 
-    (update-in project [:dependencies] conj ['quickie "0.2.4"])
+    (update-in project [:dependencies] conj ['gmatheu/quickie "0.2.7-SNAPSHOT"])
     (let [parameters (-> {}
                          (paths project)
                          (assoc :test-matcher (test-matcher project args)))]

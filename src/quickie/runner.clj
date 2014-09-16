@@ -1,7 +1,8 @@
 (ns quickie.runner
   (:require [clojure.test :as test]
             [clansi.core :as clansi]
-            [clojure.string :as string]))
+            [clojure.string :as string]
+            [clojure.java.shell :refer [sh]]))
 
 (defn out-str-result [f]
   (let [string-writer (new java.io.StringWriter)]
@@ -46,19 +47,20 @@
          (map :line))))
 
 (defn print-pass [result]
-  (-> (:output result)
-      last
-      println)
-  (println (clansi/style "   All Tests Passing!   " :black :bg-green)))
+  (let [output (-> :output result last)
+        message "   All Tests Passing!   "] 
+  (sh "notify-send" "-i" "dialog-ok" (str "Quickie:" message)  output)
+  (println output)
+  (println (clansi/style message :black :bg-green))))
 
 (defn print-fail [result]
   (let [{:keys [error fail]} (:result result)
-        lines               (:output result)]
-    (->> lines
-         filter-lines
-         (string/join "\n")
-         println)
-    (println (clansi/style (str "   " error " errors and " fail " failures   ") :black :bg-red))))
+        lines   (:output result)
+        message (str "   " error " errors and " fail " failures   ")
+        output  (->> lines filter-lines (string/join "\n"))]
+    (sh "notify-send" "-i" "dialog-error" (str "Quickie:" message)  output)
+    (println output)
+    (println (clansi/style message :black :bg-red))))
 
 (defn print-result [result]
   (let [{:keys [error fail]} (:result result)]
