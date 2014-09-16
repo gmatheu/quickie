@@ -4,3 +4,26 @@ build:
         - script:
             name: test
             code: lein test
+        - script:
+            name: package
+            code: lein jar
+        - script:
+            name: descriptor
+            code: lein pom
+
+deploy:
+  steps:
+  - add-to-known_hosts:
+        hostname: clojars.org
+   - mktemp:
+      envvar: PRIVATEKEY_PATH
+   - create-file:
+      name: write key
+      filename: $PRIVATEKEY_PATH
+      content: $SSH_KEY_PRIVATE
+      overwrite: true
+      hide-from-log: true
+   - script:
+      name: deploy to clojars
+      code: |
+        scp -i $PRIVATEKEY_PATH -o StrictHostKeyChecking=no -o UserKnownHostsFile=no pom.xml target/*.jar clojars@clojars.org:
