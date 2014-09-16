@@ -1,6 +1,6 @@
-(defproject quickie "0.2.6"
+(defproject gmatheu/quickie "0.2.7-SNAPSHOT"
   :description "Automatically run tests when clj files change"
-  :url "http://github.com/jakepearson/quickie"
+  :url "https://github.com/gmatheu/quickie"
   :license {:name "Eclipse Public License" :url "http://www.eclipse.org/legal/epl-v10.html"}
   :eval-in-leiningen true
   :dependencies [[org.clojure/clojure "1.5.1"]

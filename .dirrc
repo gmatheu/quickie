@@ -1,0 +1,13 @@
+#! /bin/bash
+function local_lein_if_exists()
+{
+  if [[ -f './lein' ]]
+  then
+    ./lein $@ 
+  else
+    unalias lein
+    lein $@
+  fi
+}
+
+alias lein=local_lein_if_exists
