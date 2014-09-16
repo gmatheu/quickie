@@ -1,5 +1,8 @@
 # quickie
 
+[![Clojars Project](http://clojars.org/gmatheu/quickie/latest-version.svg)](http://clojars.org/gmatheu/quickie)
+
+
 A Leiningen plugin that will magically re-run all your tests when a file changes.
 
 ![Screenshot](doc/screen.png)
@@ -12,12 +15,13 @@ A Leiningen plugin that will magically re-run all your tests when a file changes
 * Uses (Clansi)[https://github.com/ams-clj/clansi] to show a red or green bar to know if you tests are passing
 * Filters out exception stacktraces to remove cruft
 * Pass in a test matcher to change which tests are run from the command line.
+* __Sends OSD notifications using [notify-send](http://manpages.ubuntu.com/manpages/trusty/man1/notify-send.1.html)__ 
 
 ## Usage
 
 Use this for project-level plugins:
 
-Put `[quickie "0.2.5"]` into the `:plugins` vector of your project.clj.
+Put `[gmatheu/quickie "0.2.7-SNAPSHOT"]` into the `:plugins` vector of your project.clj.
 
     $ lein quickie
 
@@ -28,12 +32,7 @@ Hit ctrl+c whenever you are done.  Have fun!
 ## License
 
 Copyright © 2012 Jake Pearson
+Copyright © 2014 Gonzalo Matheu
+
 
 Distributed under the Eclipse Public License, the same as Clojure.
-
-## Contributors
-* Adam Esterline
-* Jeff Smith
-* Russ Teabeault
-* Chris Perkins
-* Jake Pearson
