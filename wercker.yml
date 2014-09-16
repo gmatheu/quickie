@@ -2,5 +2,5 @@ box: markmandel/cljx-box@0.0.2
 build:
     steps:
         - script:
-            name: lein
-            code: test
+            name: test
+            code: lein test
